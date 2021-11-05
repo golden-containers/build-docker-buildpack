@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on:
+  schedule:
+    - cron: '0 15 * * *'
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-alpine:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Checkout Alpine docker assets
+      run: ./checkout-alpine-amd64.sh
+    - name: Build image
+      run: docker build docker-alpine/x86_64 --tag ghcr.io/jgowdy/alpine:latest --tag ghcr.io/jgowdy/alpine:3.14
+    - name: Log in to registry
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+    - name: Publish the Docker image
+      run: docker push ghcr.io/jgowdy/alpine:latest
+    - name: Publish the Docker image
+      run: docker push ghcr.io/jgowdy/alpine:3.14
