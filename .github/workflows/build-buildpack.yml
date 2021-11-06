@@ -15,3 +15,13 @@ jobs:
     - uses: actions/checkout@v2
     - name: Checkout buildpack docker assets
       run: ./checkout-buildpack.sh
+    - name: Run apply-templates.sh
+      working-directory: buildpack-deps
+      run: BASHBREW_SCRIPTS=.. ./apply-templates.sh
+    - name: Build bullseye-curl
+      run: docker build buildpack-deps/debian/bullseye/curl
+    - name: Build bullseye-scm
+      run: docker build buildpack-deps/debian/bullseye/scm
+    - name: Build bullseye
+      run: docker build buildpack-deps/debian/bullseye
+      
