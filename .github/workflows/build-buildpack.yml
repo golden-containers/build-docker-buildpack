@@ -19,9 +19,16 @@ jobs:
       working-directory: buildpack-deps
       run: BASHBREW_SCRIPTS=.. ./apply-templates.sh
     - name: Build bullseye-curl
-      run: docker build buildpack-deps/debian/bullseye/curl
+      run: docker build --tag ghcr.io/golden-containers/buildpack-deps:bullseye-curl buildpack-deps/debian/bullseye/curl
     - name: Build bullseye-scm
-      run: docker build buildpack-deps/debian/bullseye/scm
+      run: docker build --tag ghcr.io/golden-containers/buildpack-deps:bullseye-scm buildpack-deps/debian/bullseye/scm
     - name: Build bullseye
-      run: docker build buildpack-deps/debian/bullseye
-      
+      run: docker build --tag ghcr.io/golden-containers/buildpack-deps:bullseye buildpack-deps/debian/bullseye
+    - name: Log in to registry
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+    - name: Publish the Docker image
+      run: docker push ghcr.io/golden-containers/buildpack-deps:bullseye-curl
+    - name: Publish the Docker image
+      run: docker push ghcr.io/golden-containers/buildpack-deps:bullseye-scm
+    - name: Publish the Docker image
+      run: docker push ghcr.io/golden-containers/buildpack-deps:bullseye
