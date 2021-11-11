@@ -20,9 +20,9 @@ sed -i -e "1 s/FROM.*/FROM ghcr.io\/golden-containers\/bullseye-scm/; t" -e "1,/
 
 # Build
 
-docker build --tag ghcr.io/golden-containers/buildpack-deps:bullseye-curl buildpack-deps/debian/bullseye/curl
-docker build --tag ghcr.io/golden-containers/buildpack-deps:bullseye-scm buildpack-deps/debian/bullseye/scm
-docker build --tag ghcr.io/golden-containers/buildpack-deps:bullseye buildpack-deps/debian/bullseye
+docker build --tag ghcr.io/golden-containers/buildpack-deps:bullseye-curl debian/bullseye/curl
+docker build --tag ghcr.io/golden-containers/buildpack-deps:bullseye-scm debian/bullseye/scm
+docker build --tag ghcr.io/golden-containers/buildpack-deps:bullseye debian/bullseye
 
 # Push
 
