@@ -26,6 +26,4 @@ docker build --tag ghcr.io/golden-containers/buildpack-deps:bullseye debian/bull
 
 # Push
 
-docker push ghcr.io/golden-containers/buildpack-deps:bullseye-curl
-docker push ghcr.io/golden-containers/buildpack-deps:bullseye-scm
-docker push ghcr.io/golden-containers/buildpack-deps:bullseye
+docker push ghcr.io/golden-containers/buildpack-deps -a
