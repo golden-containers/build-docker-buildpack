@@ -23,9 +23,9 @@ ${GNU_SED} -i -e "1 s/FROM.*/FROM ghcr.io\/golden-containers\/buildpack-deps:bul
 
 # Build
 
-docker build debian/bullseye/curl/ --tag ghcr.io/golden-containers/buildpack-deps:bullseye-curl --label ${1:-DEBUG=TRUE}
-docker build debian/bullseye/scm/ --tag ghcr.io/golden-containers/buildpack-deps:bullseye-scm --label ${1:-DEBUG=TRUE}
-docker build debian/bullseye/ --tag ghcr.io/golden-containers/buildpack-deps:bullseye --label ${1:-DEBUG=TRUE}
+docker build debian/bullseye/curl/ --platform linux/amd64 --tag ghcr.io/golden-containers/buildpack-deps:bullseye-curl --label ${1:-DEBUG=TRUE}
+docker build debian/bullseye/scm/ --platform linux/amd64 --tag ghcr.io/golden-containers/buildpack-deps:bullseye-scm --label ${1:-DEBUG=TRUE}
+docker build debian/bullseye/ --platform linux/amd64 --tag ghcr.io/golden-containers/buildpack-deps:bullseye --label ${1:-DEBUG=TRUE}
 
 # Push
 
